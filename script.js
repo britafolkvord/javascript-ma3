@@ -1,46 +1,21 @@
-//Console.log out elements in JSON file
+//Use RegEx to validate form
+var button = document.getElementById(`input-submit`)
 
-video = `[
-        {
-        "id": 12312412312,
-        "name": "Ecuaciones Diferenciales",
-        "url": "/video/math/edo/12312412312",
-        "author": {
-            "data": [{
-                "name_author": "Alejandro Morales",
-                "url": "/author/alejandro-morales",
-                "type": "master"
-            }]
-        }
+button.addEventListener(
+    'click',function validate(){
+        var firstName = document.getElementById(`input-firstName`).value;
+        var lastName = document.getElementById(`input-lastName`).value;
+        var email = document.getElementById(`input-email`).value;
+        var phoneNumber = document.getElementById(`input-phoneNumber`).value;
+        var firstNameReg = /^[a-zA-Z]$/;
+        var lastNameReg = /^[a-zA-Z]$/;
+        var phoneRegex = /^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/;
+        var emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
+        var firstNameRes = firstNameReg.test(firstName);
+        var lastNameRes = lastNameReg.test(lastName);
+        var emailRes = emailRegex.test(email);
+        var phoneNumberRes = phoneRegex.test(phoneNumber);
     }
-]`;
+);
 
-
-var val = JSON.parse(video);
-logData(val);
-
-
-
-function logData(val){
-    switch (typeof val){
-        case "number":
-            case "string":
-                case "boolean":
-                    console.log(val)
-                    break;
-    
-        case "object":
-            if (val === null){
-                console.log(val);
-            } else if (Array.isArray(val)){
-                val.forEach(v => logData(v))
-            } else {
-                logData(Object.values(val))   
-            }  
-            break;
-        default:
-            console.log(val);
-                    
-    }
-}
 
